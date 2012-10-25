@@ -9,11 +9,17 @@ Puppet module for installing and managing Memcached.
 
 Installs and manages Memcached.
 
-**ram** — Maximum amount of RAM to use, in megs. Default: 512
+**max_memory** — Maximum amount of memory to use, in megs. Default: 512
 
-    class { 'memcached':
-      ram => '256',
-    }
+**max_connections** — Number of simultaneous incoming connections. Default: 1024
+
+**lock_memory** — Lock down all paged memory. Default: true
+
+	class { 'memcached':
+	  max_memory      => '256',
+	  max_connections => '8192',
+	  lock_memory     => false,
+	}
 
 ## Authors
 

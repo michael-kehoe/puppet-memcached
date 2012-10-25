@@ -16,7 +16,7 @@ logfile /var/log/memcached.log
 
 # Note that the daemon will grow to this size, but does not start out holding this much
 # memory
--m <%= scope.lookupvar('memcached::ram') %>
+-m <%= scope.lookupvar('memcached::max_memory') %>
 
 # Default connection port is 11211
 -p 11211
@@ -31,13 +31,18 @@ logfile /var/log/memcached.log
 #-l 127.0.0.1
 
 # Limit the number of simultaneous incoming connections. The daemon default is 1024
-# -c 1024
+-c <%= scope.lookupvar('memcached::max_connections') %>
 
 # Lock down all paged memory. Consult with the README and homepage before you do this
-# -k
+<% if scope.lookupvar('memcached::lock_memory') -%>
+-k
+<% end -%>
 
 # Return error when memory is exhausted (rather than removing items)
 # -M
 
 # Maximize core file limit
 # -r
+
+# Number of threads to use to process incoming requests.
+-t <%= @processorcount %>
