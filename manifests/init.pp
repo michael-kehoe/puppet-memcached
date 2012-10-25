@@ -4,6 +4,9 @@
 #
 # === Parameters
 #
+# [*bind_local*]
+#  Listen on localhost only. Default: false
+#
 # [*max_memory*]
 #  Maximum amount of memory to use, in megs. Default: 512
 #
@@ -16,6 +19,7 @@
 # === Examples
 #
 # class { 'memcached':
+#   bind_local      => true,
 #   max_memory      => '256',
 #   max_connections => '8192',
 #   lock_memory     => false,
@@ -26,6 +30,7 @@
 # Sergey Stankevich
 #
 class memcached (
+  $bind_local      = false,
   $max_memory      = '512',
   $max_connections = '1024',
   $lock_memory     = true
