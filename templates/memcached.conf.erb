@@ -47,4 +47,4 @@ logfile /var/log/memcached.log
 # -r
 
 # Number of threads to use to process incoming requests.
--t <%= @processorcount %>
+-t <%= @processorcount.to_i < 4 ? 2 : (@processorcount.to_i/2) %>
