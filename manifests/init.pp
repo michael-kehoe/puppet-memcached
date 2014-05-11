@@ -37,7 +37,7 @@ class memcached (
 ) {
 
   # Compatibility check
-  $compatible = [ 'Debian', 'Ubuntu' ]
+  $compatible = [ 'Debian', 'Ubuntu', 'CentOS', 'Redhat' ]
   if ! ($::operatingsystem in $compatible) {
     fail("Module is not compatible with ${::operatingsystem}")
   }
